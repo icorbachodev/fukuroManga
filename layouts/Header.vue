@@ -49,11 +49,8 @@
                     <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                        <a class="button is-danger">
-                            <strong>Registrate</strong>
-                        </a>
-                        <a class="button is-light">
-                            Inicia sesión
+                        <a href="login" class="button is-danger">
+                            <strong>Iniciar sesión</strong>
                         </a>
                         </div>
                     </div>

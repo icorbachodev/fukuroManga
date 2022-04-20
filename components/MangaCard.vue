@@ -10,11 +10,11 @@
             <div class="media">
                 <div class="media-content">
                 <p class="title is-4 restaurant-name">
-                    {{ Nombre }}
+                    {{ nombre }}
                 </p>
                 <div class="columns">
                     <div class="column">
-                    <span class="tag">{{ Genero }}</span>
+                    <span class="tag">{{ genero }}</span>
                     </div>
                     <div class="column has-text-right">
                     <button class="button is-info" v-on:click="sumLikes">{{ Likes }}</button>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="content">
-                {{ Descripcion }}<br/><a href="">more info</a>.
+                {{ descripcion }}<br/><a v-bind:href="nombre">more info</a>.
             </div>
         </div>
   </div>
@@ -33,13 +33,30 @@
 
 <script>
 export default {
+    props: {
+        nombre: {
+           type: String,
+           default: ''
+        },
+        autor: {
+           type: String,
+           default: ''
+        },
+        genero: {
+           type: String,
+           default: ''
+        },
+        descripcion: {
+           type: String,
+           default: ''
+        },
+        precio: {
+           type: Number,
+           default: 0
+        }
+    },
     data() {
         return {
-            Nombre : "Jujutsu Kaisen 01",
-            Autor : "Gege Akutami",
-            Genero : "Fantasia Oscura",
-            Descripcion : "Yuuji Itadori es un estudiante de instituto con unas habilidades físicas excepcionales. Todos los días, como rutina, va al hospital a visitar a su abuelo enfermo y decide apuntarse al club de ocultismo del instituto para no dar un palo al agua… Sin embargo, un buen día el sello del talismán que se hallaba escondido en su instituto se rompe, y comienzan a aparecer unos monstruos. Ante este giro de los acontecimientos, Itadori decide adentrarse en el instituto para salvar a sus compañeros. ¿Qué le deparará el destino?",
-            Precio : 8.00,
             Likes: 0
         }
     },

@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <MangaCard />
+    <MangaCard 
+      nombre="Jujutsu Kaisen"
+      autor="Gege Akito"
+      genero="Fantasia Oscura"
+      descripcion="Hechiceros contra maldiciones mah que guapo chaval"
+    />
   </div>
 </template>
 

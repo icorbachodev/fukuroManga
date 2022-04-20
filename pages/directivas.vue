@@ -7,7 +7,8 @@
         <ul>
             <li v-for="item in items">{{ item }}</li>
         </ul>
-        <p>Nombre: {{ name }}</p>
+        <p>Nombre: {{ name }} {{ nameReverser }}</p>
+        <p>{{ error }}</p>
         <input v-model="name" type="text" />
         <button v-on:click="saludo" class="button is-danger">Saluda</button>
     </div>
@@ -20,7 +21,22 @@ export default {
             message: "Hola Mamahuevo",
             num: 5,
             items: [1,2,3,4,5,6],
-            name: ''
+            name: '',
+            error: ''
+        }
+    },
+    computed: {
+        nameReverser() {
+            return this.name.split('').reverse().join('')
+        }
+    },
+    watch: {
+        name() {
+            if(this.name.length > 5) {
+                this.error = "Nombre demasiado largo"
+            } else {
+                this.error = ''
+            }
         }
     },
     methods: {
