@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+    <header>
+        <div class="container">
             <nav class="navbar mb-5" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="https://bulma.io">
@@ -57,7 +58,9 @@
                     </div>
                 </div>
             </nav>
-    </div>
+        </div>
+    </header>
+    
 </template>
 
 <script>
@@ -67,5 +70,8 @@ export default {
 </script>
 
 <style scoped>
-
+    header {
+        box-sizing: border-box;
+        box-shadow: 0 0px 10px rgba(0, 0, 0, 0.25);
+    }
 </style>

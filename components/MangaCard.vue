@@ -17,7 +17,7 @@
                     <span class="tag">{{ genero }}</span>
                     </div>
                     <div class="column has-text-right">
-                    <button class="button is-info" v-on:click="sumLikes">{{ Likes }}</button>
+                    <button class="button is-info" v-on:click="sumLikes">{{ likes }}</button>
                     </div>
                 </div>
                 </div>
@@ -51,18 +51,18 @@ export default {
            default: ''
         },
         precio: {
+           type: String,
+           default: ''
+        },
+        likes: {
            type: Number,
            default: 0
         }
     },
-    data() {
-        return {
-            Likes: 0
-        }
-    },
     methods: {
         sumLikes() {
-            this.Likes++
+            this.$emit('onLikeButton')
+            //this.likes++
         }
     }
 }
