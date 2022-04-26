@@ -2,32 +2,32 @@
     <div class="container">
         <div class="card" style="width:400px;">
             <div class="card-image">
-            <figure class="image">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Figure_in_Manga_style_variation_1.png" alt="Jujutsu Kaisen" />
-            </figure>
+                <figure class="image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Figure_in_Manga_style_variation_1.png" alt="Jujutsu Kaisen" />
+                </figure>
             </div>
             <div class="card-content">
-            <div class="media">
-                <div class="media-content">
-                <p class="title is-4 restaurant-name">
-                    {{ nombre }}
-                </p>
-                <div class="columns">
-                    <div class="column">
-                    <span class="tag">{{ genero }}</span>
+                <div class="media">
+                    <div class="media-content">
+                    <p class="title is-4 restaurant-name">
+                        {{ nombre }}
+                    </p>
+                    <div class="columns">
+                        <div class="column">
+                        <span class="tag">{{ genero }}</span>
+                        </div>
+                        <div class="column has-text-right">
+                        <button class="button is-info" v-on:click="sumLikes">{{ likes }}</button>
+                        </div>
                     </div>
-                    <div class="column has-text-right">
-                    <button class="button is-info" v-on:click="sumLikes">{{ likes }}</button>
                     </div>
                 </div>
+                <div class="content">
+                    {{ descripcion }}<br/><a v-bind:href="nombre">more info</a>.
                 </div>
-            </div>
-            <div class="content">
-                {{ descripcion }}<br/><a v-bind:href="nombre">more info</a>.
             </div>
         </div>
   </div>
-    </div>
     
 </template>
 
