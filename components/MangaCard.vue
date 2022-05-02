@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="card" style="width:400px;">
+        <div class="card">
             <div class="card-image">
                 <figure class="image">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Figure_in_Manga_style_variation_1.png" alt="Jujutsu Kaisen" />

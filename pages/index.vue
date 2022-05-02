@@ -1,22 +1,25 @@
 <template>
   <div class="container">
     <Hero>
-      <div slot="header">
-        <input class="input email mb-3" type="email" name="correo" id="correo">
-        <button class="button is-danger">Suscribirse</button>
+      <div slot="header" v-if="!is_subscribe">
+        <input v-model="email" class="input email mb-3" type="email" name="correo" id="correo">
+        <button class="button is-danger" @click="subscribe">Suscribirse</button>
       </div>
     </Hero>
-    <MangaCard 
+    <div class="columns is-multiline">
+      <MangaCard 
       :nombre="manga.Nombre"
       :autor="manga.Autor"
       :genero="manga.Genero"
       :descripcion="manga.Descripcion"
       precio="8.00"
       :likes="manga.likes"
-      v-on:onLikeButton="sumLikes(index)"
+      v-on:onLikeButton="sumLikes(manga)"
       v-for="(manga, index) in mangas"
       :key="index"
-    />
+      class="manga-card"
+      />
+    </div>
   </div>
 </template>
 
@@ -39,13 +42,35 @@ export default {
   data() {
     return {
       likes: 0,
-      mangas: []
+      mangas: [],
+      email: '',
+      is_subscribe: false
     }
   },
   methods: {
-    sumLikes(index) {
-      this.mangas[index].likes++
+    async sumLikes(manga) {
+      const payload = {
+        id: manga.id,
+        data: {
+          likes: manga.likes + 1
+        }
+      }
+      const response = await api.putSumMangaLikes(payload)
+      if(response.status == 200) {
+        manga.likes++
+      }
+    },
+
+    async subscribe() {
+      const payload = {
+        email: this.email
+      }
+      const response = await api.postSubcribeUser(payload)
+      if(response.status == 201) { // 201 : Created
+        this.is_subscribe = true
+      }
     }
+  
   }
 }
 </script>
@@ -53,5 +78,10 @@ export default {
 <style scoped>
   .email {
     width: 80%;
+  }
+
+  .manga-card {
+    margin: 10px 10px;
+    width: 322px;
   }
 </style>
