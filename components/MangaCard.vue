@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-image">
                 <figure class="image">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Figure_in_Manga_style_variation_1.png" alt="Jujutsu Kaisen" />
+                    <img :src="imagen" alt="Imagen manga" />
                 </figure>
             </div>
             <div class="card-content">
@@ -14,7 +14,7 @@
                     </p>
                     <div class="columns">
                         <div class="column">
-                        <span class="tag">{{ genero }}</span>
+                        <a :href="genero"><span class="tag">{{ genero }}</span></a>
                         </div>
                         <div class="column has-text-right">
                         <button class="button is-info" v-on:click="sumLikes">{{ likes }}</button>
@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    {{ descripcion }}<br/><a v-bind:href="nombre">more info</a>.
+                    {{ descripcion }}<br/><a :href="genero + '/' + nombre">more info</a>.
                 </div>
             </div>
         </div>
@@ -34,6 +34,10 @@
 <script>
 export default {
     props: {
+        imagen: {
+            type: String,
+            default: ''
+        },
         nombre: {
            type: String,
            default: ''

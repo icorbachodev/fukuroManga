@@ -3,7 +3,7 @@
         <div class="container">
             <nav class="navbar mb-5" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                    <a class="navbar-item" href="https://bulma.io">
+                    <a class="navbar-item" href="/">
                         <h1 class="title is-4">Fukuro <b class="has-text-danger">Manga</b></h1>
                     </a>
 

@@ -7,7 +7,8 @@
       </div>
     </Hero>
     <div class="columns is-multiline">
-      <MangaCard 
+      <MangaCard
+      :imagen="manga.Imagen" 
       :nombre="manga.Nombre"
       :autor="manga.Autor"
       :genero="manga.Genero"
@@ -27,6 +28,7 @@
 import MangaCard from "~/components/MangaCard"
 import Hero from "~/components/Hero"
 import api from "~/services/api"
+import { db } from "~/plugins/firebase"
 
 export default {
   components: {
