@@ -1,18 +1,12 @@
 <template>
   <div class="container">
-    <Hero>
-      <div slot="header" v-if="!is_subscribe">
-        <input v-model="email" class="input email mb-3" type="email" name="correo" id="correo">
-        <button class="button is-danger" @click="subscribe">Suscribirse</button>
-      </div>
-    </Hero>
     <div class="columns is-multiline">
       <MangaCard
-      :imagen="manga.Imagen" 
-      :nombre="manga.Nombre"
-      :autor="manga.Autor"
-      :genero="manga.Genero"
-      :descripcion="manga.Descripcion"
+      :imagen="manga.image" 
+      :nombre="manga.name"
+      :autor="manga.author"
+      :genero="manga.genre"
+      :descripcion="manga.description"
       precio="8.00"
       :likes="manga.likes"
       v-on:onLikeButton="sumLikes(manga)"
@@ -29,6 +23,7 @@ import MangaCard from "~/components/MangaCard"
 import Hero from "~/components/Hero"
 import api from "~/services/api"
 import { db } from "~/plugins/firebase"
+import { collection, getDocs } from 'firebase/firestore'
 
 export default {
   components: {
@@ -36,10 +31,10 @@ export default {
     Hero
   },
   async created() {
-    const response = await api.getMangas()
-    if(response.status == 200) {
-      this.mangas = response.data
-    }
+    const response = await getDocs(collection(db,'mangas'))
+    response.forEach(doc => {
+      this.mangas.push(doc.data())
+    }) 
   },
   data() {
     return {

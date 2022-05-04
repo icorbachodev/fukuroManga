@@ -1,29 +1,26 @@
 <template>
     <div class="container">
-        <div class="card">
+        <div class="card has-text-centered">
             <div class="card-image">
                 <figure class="image">
-                    <img :src="imagen" alt="Imagen manga" />
+                    <a :href="nombre"><img :src="imagen" alt="Imagen manga" /></a>
                 </figure>
             </div>
             <div class="card-content">
                 <div class="media">
                     <div class="media-content">
-                    <p class="title is-4 restaurant-name">
+                    <p class="title restaurant-name">
                         {{ nombre }}
                     </p>
                     <div class="columns">
                         <div class="column">
                         <a :href="genero"><span class="tag">{{ genero }}</span></a>
                         </div>
-                        <div class="column has-text-right">
-                        <button class="button is-info" v-on:click="sumLikes">{{ likes }}</button>
-                        </div>
                     </div>
                     </div>
                 </div>
-                <div class="content">
-                    {{ descripcion }}<br/><a :href="genero + '/' + nombre">more info</a>.
+                <div class="content pt-1">
+                    <button class="button is-danger">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -73,5 +70,10 @@ export default {
 </script>
 
 <style scoped>
-
+    img {
+        height: 492px;
+    }
+    .title {
+        font-size: 1.22rem;
+    }
 </style>
