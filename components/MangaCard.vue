@@ -3,7 +3,7 @@
         <div class="card has-text-centered">
             <div class="card-image">
                 <figure class="image">
-                    <a :href="nombre"><img :src="imagen" alt="Imagen manga" /></a>
+                    <a :href="genero + '/' + nombre"><img :src="imagen" alt="Imagen manga" /></a>
                 </figure>
             </div>
             <div class="card-content">
@@ -59,12 +59,6 @@ export default {
            type: Number,
            default: 0
         }
-    },
-    methods: {
-        sumLikes() {
-            this.$emit('onLikeButton')
-            //this.likes++
-        }
     }
 }
 </script>
@@ -73,6 +67,11 @@ export default {
     img {
         height: 492px;
     }
+
+    img:hover {
+        opacity: 0.7;
+    }
+
     .title {
         font-size: 1.22rem;
     }

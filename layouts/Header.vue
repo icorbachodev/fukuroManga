@@ -16,8 +16,8 @@
 
                 <div id="navbarBasicExample" class="navbar-menu">
                     <div class="navbar-start mx-auto">
-                    <a class="navbar-item">
-                        Home
+                    <a class="navbar-item" href="/">
+                        Inicio
                     </a>
 
                     <a class="navbar-item">
