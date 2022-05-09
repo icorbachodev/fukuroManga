@@ -53,9 +53,7 @@ export default {
     return {
       likes: 0,
       novedades: [],
-      recomendados: [],
-      email: '',
-      is_subscribe: false
+      recomendados: []
     }
   },
   methods: {
