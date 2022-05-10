@@ -1,16 +1,14 @@
 <template>
   <div class="container">
+    <Hero />
     <h1 class="title pt-2">Novedades</h1>
     <hr>
     <div class="columns is-multiline">
       <MangaCard
       :imagen="novedad.image" 
       :nombre="novedad.name"
-      :autor="novedad.author"
+      :categoria="novedad.category"
       :genero="novedad.genre"
-      :descripcion="novedad.description"
-      precio="8.00"
-      :likes="novedad.likes"
       v-for="(novedad, index) in novedades"
       :key="index"
       class="manga-card"
@@ -22,11 +20,8 @@
       <MangaCard
       :imagen="recomendado.image" 
       :nombre="recomendado.name"
-      :autor="recomendado.author"
+      :categoria="recomendado.category"
       :genero="recomendado.genre"
-      :descripcion="recomendado.description"
-      precio="8.00"
-      :likes="recomendado.likes"
       v-for="(recomendado, index) in recomendados"
       :key="index"
       class="manga-card"

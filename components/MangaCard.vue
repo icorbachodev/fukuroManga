@@ -3,7 +3,7 @@
         <div class="card has-text-centered">
             <div class="card-image">
                 <figure class="image">
-                    <a :href="genero + '/' + nombre"><img :src="imagen" alt="Imagen manga" /></a>
+                    <a :href="categoria + '/' + nombre"><img :src="imagen" alt="Imagen manga" /></a>
                 </figure>
             </div>
             <div class="card-content">
@@ -14,7 +14,7 @@
                     </p>
                     <div class="columns">
                         <div class="column">
-                        <a :href="genero"><span class="tag">{{ genero }}</span></a>
+                        <span class="tag">{{ genero }}</span>
                         </div>
                     </div>
                     </div>
@@ -39,25 +39,13 @@ export default {
            type: String,
            default: ''
         },
-        autor: {
+        categoria: {
            type: String,
            default: ''
         },
         genero: {
            type: String,
            default: ''
-        },
-        descripcion: {
-           type: String,
-           default: ''
-        },
-        precio: {
-           type: String,
-           default: ''
-        },
-        likes: {
-           type: Number,
-           default: 0
         }
     }
 }
