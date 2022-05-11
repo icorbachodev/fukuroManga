@@ -5,6 +5,7 @@
     <hr>
     <div class="columns is-multiline">
       <MangaCard
+      :id='novedad.id'
       :imagen="novedad.image" 
       :nombre="novedad.name"
       :categoria="novedad.category"
@@ -16,8 +17,9 @@
     </div>
     <h1 class="title pt-5">Recomendados</h1>
     <hr>
-    <div class="columns is-multiline">
+    <div class="columns is-multiline pb-5">
       <MangaCard
+      :id='recomendado.id'
       :imagen="recomendado.image" 
       :nombre="recomendado.name"
       :categoria="recomendado.category"
@@ -55,8 +57,8 @@ export default {
     async getMangas() {
       const response = await getDocs(collection(db,'mangas'))
       response.forEach(doc => {
-        if(doc.data().category == 'Novedad') this.novedades.push(doc.data())
-        if(doc.data().category == 'Recomendado') this.recomendados.push(doc.data())
+        if(doc.data().category == 'novedad') this.novedades.push(doc.data())
+        if(doc.data().category == 'recomendado') this.recomendados.push(doc.data())
       }) 
     }
   }

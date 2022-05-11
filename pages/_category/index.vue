@@ -1,10 +1,11 @@
 <template>
     <div>
-        <div class="container">
-            <h1 class="title is-1 has-text-centered">{{$route.params.category}}</h1>
+        <div class="container pb-5">
+            <h1 class="title is-1 has-text-centered is-capitalized">{{$route.params.category}}</h1>
             <hr>
             <div class="columns is-multiline">
                 <MangaCard
+                :id='manga.id'
                 :imagen="manga.image" 
                 :nombre="manga.name"
                 :categoria="manga.category"
@@ -40,7 +41,7 @@ export default {
             const response = await getDocs(collection(db,'mangas'))
             response.forEach(doc => {
                 if(doc.data().category == this.$route.params.category) this.mangas.push(doc.data())
-                if(this.$route.params.category == 'Completo') this.mangas.push(doc.data())
+                if(this.$route.params.category == 'completo') this.mangas.push(doc.data())
             }) 
         }
     }

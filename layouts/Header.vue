@@ -26,13 +26,13 @@
                             </a>
 
                             <div class="navbar-dropdown">
-                                <a class="navbar-item" href="/Novedad">
+                                <a class="navbar-item" href="/novedad">
                                     Novedades
                                 </a>
-                                <a class="navbar-item" href="/Recomendado">
+                                <a class="navbar-item" href="/recomendado">
                                     Recomendados
                                 </a>
-                                <a class="navbar-item" href="/Completo">
+                                <a class="navbar-item" href="/completo">
                                     Catalogo Completo
                                 </a>
                             </div>
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                         <div class="navbar-item has-dropdown is-hoverable" v-if="desconectado == false">
-                            <img src="https://wallpapercave.com/wp/wp8846862.jpg" class="mt-3">
+                            <img :src="fotoPerfil" class="mt-3 is-rounded">
                             <a class="navbar-item"><strong>{{nombre}}</strong></a>
                             <div class="navbar-dropdown">
                                 <a class="navbar-item">Tu perfil</a>
@@ -120,7 +120,6 @@ export default {
         box-shadow: 0 0px 10px rgba(0, 0, 0, 0.25);
     }
     img {
-        border-radius: 100%;
         width: 30px;
     }
 </style>
