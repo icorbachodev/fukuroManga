@@ -15,7 +15,7 @@
                 </div>
 
                 <div id="navbarBasicExample" class="navbar-menu">
-                    <div class="navbar-start mx-auto">
+                    <div class="navbar-start pl-6 mx-auto">
                         <a class="navbar-item" href="/">
                             Inicio
                         </a>
@@ -33,12 +33,12 @@
                                     Recomendados
                                 </a>
                                 <a class="navbar-item" href="/completo">
-                                    Catalogo Completo
+                                    Catálogo Completo
                                 </a>
                             </div>
                         </div>
 
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="/merchandising">
                             Merchandising
                         </a>
 

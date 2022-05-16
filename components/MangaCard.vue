@@ -14,7 +14,7 @@
                     </p>
                     <div class="columns">
                         <div class="column">
-                        <span class="tag">{{ genero }}</span>
+                        <span class="tag is-capitalized">{{ genero }}</span>
                         </div>
                     </div>
                     </div>
