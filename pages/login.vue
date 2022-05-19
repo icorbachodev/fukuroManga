@@ -102,7 +102,7 @@ export default {
             createUserWithEmailAndPassword(auth, this.correo, this.password)
                 .then(userCredential => {
                     updateProfile(auth.currentUser, {
-                        displayName: this.nombre, photoURL: 'https://freepikpsd.com/file/2019/10/default-profile-picture-png-1-Transparent-Images.png'
+                        displayName: this.nombre, photoURL: 'https://i.pinimg.com/474x/67/de/2e/67de2ee9a650b53f641cb4494be4c216.jpg'
                     }).then(() => { })
                     .catch(error => {
                         alert(error.message)

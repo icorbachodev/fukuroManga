@@ -60,10 +60,12 @@
                             </div>
                         </div>
                         <div class="navbar-item has-dropdown is-hoverable" v-if="desconectado == false">
-                            <img :src="fotoPerfil" class="mt-3 is-rounded">
+                            <figure class="image mt-2">
+                                <img :src="fotoPerfil" class="is-rounded">
+                            </figure>
                             <a class="navbar-item"><strong>{{nombre}}</strong></a>
                             <div class="navbar-dropdown">
-                                <a class="navbar-item">Tu perfil</a>
+                                <a class="navbar-item" href="/profile">Tu perfil</a>
                                 <a class="navbar-item">Ver carrito</a>
                                 <a class="navbar-item" @click="desconectar">Desconectar</a>
                             </div>
@@ -106,7 +108,9 @@ export default {
         },
         desconectar() {
             signOut(auth)
-                .then(() => { })
+                .then(() => { 
+                    location.href = '/'
+                })
                 .catch(error => {
                     alert(error.message)
                 })
