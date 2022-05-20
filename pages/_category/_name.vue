@@ -69,5 +69,7 @@ export default {
 </script>
 
 <style scoped>
-    
+    .merch {
+        min-height: 666px;
+    }
 </style>
