@@ -2,6 +2,7 @@
     <div class="container">
         <div class="manga" v-if="mangaActual.length != 0">
             <Detail
+                :id="id"
                 :item="mangaActual.item"
                 :nombre="mangaActual.name"
                 :imagen="mangaActual.image"
@@ -12,12 +13,14 @@
                 :likes="mangaActual.likes"
                 :dislikes="mangaActual.dislikes"
                 :categoria="mangaActual.category"
+                :comentarios="comments"
             />
         </div>
         
 
         <div class="merch" v-if="articuloActual.length != 0">
             <Detail
+                :id="id"
                 :item="articuloActual.item"
                 :nombre="articuloActual.name"
                 :imagen="articuloActual.image"
@@ -27,6 +30,7 @@
                 :likes="articuloActual.likes"
                 :dislikes="articuloActual.dislikes"
                 :tipo="articuloActual.type"
+                :comentarios="comments"
             />
         </div>
     </div>
@@ -48,20 +52,38 @@ export default {
     data() {
         return {
             mangaActual: [],
-            articuloActual: []
+            articuloActual: [],
+            id: '',
+            comments: []
         }
     },
     methods: {
         async getManga() {
             const response = await getDocs(collection(db,'mangas'))
             response.forEach(doc => {
-                if(doc.data().id == this.$route.params.name) this.mangaActual = doc.data()
+                if(doc.data().id == this.$route.params.name) {
+                    this.mangaActual = doc.data()
+                    this.id = doc.id
+                    this.getComments(doc.data().id)
+                } 
             })
         },
         async getItem() {
             const response = await getDocs(collection(db,'merchandising'))
             response.forEach(doc => {
-                if(doc.data().id == this.$route.params.name) this.articuloActual = doc.data()
+                if(doc.data().id == this.$route.params.name) {
+                    this.articuloActual = doc.data()
+                    this.id = doc.id
+                    this.getComments(doc.data().id)
+                } 
+            })
+        },
+        async getComments(id) {
+            const response = await getDocs(collection(db,'comentarios'))
+            response.forEach(doc => {
+                if(doc.data().articleID == id) {
+                    this.comments.push(doc.data())
+                }
             })
         }
     }

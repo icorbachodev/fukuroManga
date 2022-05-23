@@ -26,9 +26,9 @@
                 <p class="pt-6 pb-5 has-text-justified">{{ descripcion }}</p>
                 <hr>
                 <div class="buttons">
-                    <img src="https://img.icons8.com/material-sharp/24/000000/filled-like.png" class="pb-2"/>
+                    <img src="https://img.icons8.com/material-sharp/24/000000/filled-like.png" class="pb-2" @click="sumLikes"/>
                     <label class="label pl-1">{{ likes }}</label>
-                    <img src="https://img.icons8.com/material-sharp/24/000000/dislike.png" class="pb-2 pl-4"/>
+                    <img src="https://img.icons8.com/material-sharp/24/000000/dislike.png" class="pb-2 pl-4" @click="sumDislikes"/>
                     <label class="label pl-1">{{ dislikes }}</label>
                     <button class="button is-danger">Añadir al carrito</button>
                 </div>
@@ -39,12 +39,56 @@
                 <li class="is-active"><a>Comentarios</a></li>
             </ul>
         </div>
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-64x64">
+                <img src="https://i.pinimg.com/474x/67/de/2e/67de2ee9a650b53f641cb4494be4c216.jpg">
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="field">
+                <p class="control">
+                    <textarea class="textarea" placeholder="Añade un comentario..."></textarea>
+                </p>
+                </div>
+                <nav class="level">
+                <div class="level-left">
+                    <div class="level-item">
+                    <a class="button is-danger">Enviar</a>
+                    </div>
+                </div>
+                </nav>
+            </div>
+        </article>
+        <article class="media" v-for="comentario in comentarios" :key="comentario.id">
+            <figure class="media-left">
+                <p class="image is-64x64">
+                <img :src="comentario.image">
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="content">
+                <p>
+                    <strong>{{ comentario.name }}</strong>
+                    <br>
+                    {{ comentario.message }}
+                </p>
+                </div>
+            </div>
+        </article>
     </div>
 </template>
 
 <script>
+import { doc, updateDoc } from 'firebase/firestore'
+import { db, auth } from "~/plugins/firebase"
+
 export default {
     props: {
+        id: {
+            type: String,
+            default: ''
+        },
         item: {
             type: String,
             default: ''
@@ -88,6 +132,42 @@ export default {
         dislikes: {
             type: Number,
             default: ''
+        },
+        comentarios: {
+            type: Array,
+            default: []
+        }
+    },
+    methods: {
+        async sumLikes() {
+            if(this.item == 'manga') {
+                this.likes++
+                const manga = doc(db, "mangas", this.id)
+                await updateDoc(manga, {
+                    likes: this.likes
+                })
+            } else {
+                this.likes++
+                const merch = doc(db, "merchandising", this.id)
+                await updateDoc(merch, {
+                    likes: this.likes
+                })
+            }
+        },
+        async sumDislikes() {
+            if(this.item == 'manga') {
+                this.dislikes++
+                const manga = doc(db, "mangas", this.id)
+                await updateDoc(manga, {
+                    dislikes: this.dislikes
+                })
+            } else {
+                this.dislikes++
+                const merch = doc(db, "merchandising", this.id)
+                await updateDoc(merch, {
+                    dislikes: this.dislikes
+                })
+            }
         }
     }
 }
@@ -96,5 +176,8 @@ export default {
 <style scoped>
     button {
         margin-left: auto;
+    }
+    .buttons img {
+        cursor: pointer;
     }
 </style>
