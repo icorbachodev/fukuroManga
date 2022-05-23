@@ -92,7 +92,6 @@ export default {
     },
     created() {
         this.comprobarSesion()
-        console.log(this.fotoPerfil)
     },
     methods: {
         async comprobarSesion() {
