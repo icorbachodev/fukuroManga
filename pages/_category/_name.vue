@@ -3,6 +3,7 @@
         <div class="manga" v-if="mangaActual.length != 0">
             <Detail
                 :id="id"
+                :articuloID="mangaActual.id"
                 :item="mangaActual.item"
                 :nombre="mangaActual.name"
                 :imagen="mangaActual.image"
@@ -21,6 +22,7 @@
         <div class="merch" v-if="articuloActual.length != 0">
             <Detail
                 :id="id"
+                :articuloID="articuloActual.id"
                 :item="articuloActual.item"
                 :nombre="articuloActual.name"
                 :imagen="articuloActual.image"

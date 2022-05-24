@@ -42,19 +42,20 @@
         <article class="media">
             <figure class="media-left">
                 <p class="image is-64x64">
-                <img src="https://i.pinimg.com/474x/67/de/2e/67de2ee9a650b53f641cb4494be4c216.jpg">
+                <img src="https://i.pinimg.com/474x/67/de/2e/67de2ee9a650b53f641cb4494be4c216.jpg" v-if="usuario== null">
+                <img :src="usuario.photoURL" v-else>
                 </p>
             </figure>
             <div class="media-content">
                 <div class="field">
                 <p class="control">
-                    <textarea class="textarea" placeholder="Añade un comentario..."></textarea>
+                    <textarea class="textarea" placeholder="Añade un comentario..." v-model="mensaje"></textarea>
                 </p>
                 </div>
                 <nav class="level">
                 <div class="level-left">
                     <div class="level-item">
-                    <a class="button is-danger">Enviar</a>
+                    <a class="button is-danger" @click="enviarComentario">Enviar</a>
                     </div>
                 </div>
                 </nav>
@@ -80,7 +81,7 @@
 </template>
 
 <script>
-import { doc, updateDoc } from 'firebase/firestore'
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore'
 import { db, auth } from "~/plugins/firebase"
 
 export default {
@@ -136,37 +137,69 @@ export default {
         comentarios: {
             type: Array,
             default: []
+        },
+        articuloID: {
+            type: String,
+            default: ''
+        }
+    },
+    data() {
+        return {
+            mensaje: '',
+            usuario: auth.currentUser
         }
     },
     methods: {
         async sumLikes() {
-            if(this.item == 'manga') {
+            if(this.usuario != null) {
+                if(this.item == 'manga') {
                 this.likes++
                 const manga = doc(db, "mangas", this.id)
                 await updateDoc(manga, {
                     likes: this.likes
                 })
+                } else {
+                    this.likes++
+                    const merch = doc(db, "merchandising", this.id)
+                    await updateDoc(merch, {
+                        likes: this.likes
+                    })
+                }
             } else {
-                this.likes++
-                const merch = doc(db, "merchandising", this.id)
-                await updateDoc(merch, {
-                    likes: this.likes
-                })
+                alert('Debes estar conectado para dar like')
             }
+            
         },
         async sumDislikes() {
-            if(this.item == 'manga') {
+            if(this.usuario != null) {
+                if(this.item == 'manga') {
                 this.dislikes++
                 const manga = doc(db, "mangas", this.id)
                 await updateDoc(manga, {
                     dislikes: this.dislikes
                 })
+                } else {
+                    this.dislikes++
+                    const merch = doc(db, "merchandising", this.id)
+                    await updateDoc(merch, {
+                        dislikes: this.dislikes
+                    })
+                }
             } else {
-                this.dislikes++
-                const merch = doc(db, "merchandising", this.id)
-                await updateDoc(merch, {
-                    dislikes: this.dislikes
+                alert('Debes estar conectado para dar dislike')
+            }
+        },
+        async enviarComentario() {
+            if(this.usuario != null) {
+                const comRef = await addDoc(collection(db,"comentarios"), {
+                    articleID: this.articuloID,
+                    image: this.usuario.photoURL,
+                    message: this.mensaje,
+                    name: this.usuario.displayName
                 })
+                location.reload()
+            } else {
+                alert('Debes estar conectado para escribir un comentario')
             }
         }
     }
