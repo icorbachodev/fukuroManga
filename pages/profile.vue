@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <button class="button is-danger mt-4" @click="mostrarModal">Guardar</button>
-                    <a href="/profile" class="button is-danger mt-4">Cancelar</a>
+                    <button class="button is-danger mt-4" @click="editar = false">Cancelar</button>
                 </div>
            </div>
         </div>
@@ -139,9 +139,6 @@ export default {
             }).catch(error => {
                 alert(error)
             })
-        },
-        cerrarModal() {
-            document.getElementById('prompt').classList.remove('is-active')
         }
     }
 }
