@@ -54,7 +54,7 @@
                     <div class="navbar-end">
                         <div class="navbar-item" v-if="desconectado == true">
                             <div class="buttons">
-                            <a href="login" class="button is-danger">
+                            <a href="/login" class="button is-danger">
                                 <strong>Iniciar sesión</strong>
                             </a>
                             </div>
