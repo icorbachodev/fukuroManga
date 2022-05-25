@@ -20,7 +20,7 @@
                     </div>
                 </div>
                 <div class="content pt-1">
-                    <button class="button is-danger">Añadir al carrito</button>
+                    <button class="button is-danger" @click="addCarrito">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { db, auth } from "~/plugins/firebase"
+
 export default {
     props: {
         id: {
@@ -50,7 +52,14 @@ export default {
         genero: {
            type: String,
            default: ''
+        },
+        precio: {
+            type: Number,
+            default: 0
         }
+    },
+    methods: {
+        
     }
 }
 </script>

@@ -10,6 +10,7 @@
                 :nombre="manga.name"
                 :categoria="manga.category"
                 :genero="manga.genre"
+                :precio="manga.price"
                 v-for="(manga, index) in mangas"
                 :key="index"
                 class="manga-card"

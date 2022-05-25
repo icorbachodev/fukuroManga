@@ -20,6 +20,7 @@
                 :nombre="articulo.name"
                 :categoria="articulo.type"
                 :genero="articulo.type"
+                :precio="articulo.price"
                 v-for="(articulo, index) in merchFiltrado"
                 :key="index"
                 class="manga-card"
