@@ -30,6 +30,7 @@
 
 <script>
 import { db, auth } from "~/plugins/firebase"
+var carrito = []
 
 export default {
     props: {
@@ -59,7 +60,32 @@ export default {
         }
     },
     methods: {
-        
+        addCarrito() {
+            if(auth.currentUser != null) {
+                var cookie = document.cookie
+                if(cookie != '') {
+                    carrito = JSON.parse(cookie.slice(8))
+                }
+                var repetido = carrito.findIndex(item => item.nombreItem == this.nombre)
+                if(repetido != -1) {
+                    carrito.map(item => item.nombreItem == this.nombre ? {...item, cantidad: item.cantidad++} :item)
+                    document.cookie = "carrito="+JSON.stringify(carrito)
+                    alert('Cantidad del producto actualizada')
+                } else {
+                    carrito.push({
+                        "usuario": auth.currentUser.displayName, 
+                        "nombreItem": this.nombre, 
+                        "precioItem": this.precio,
+                        "cantidad": 1 
+                    })
+                    document.cookie = "carrito="+JSON.stringify(carrito)
+                    alert('Producto añadido al carrito')
+                }
+            } else {
+                alert('Debes iniciar sesión para añadir al carrito')
+            }
+            
+        }
     }
 }
 </script>

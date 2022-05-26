@@ -30,7 +30,7 @@
                     <label class="label pl-1">{{ likes }}</label>
                     <img src="https://img.icons8.com/material-sharp/24/000000/dislike.png" class="pb-2 pl-4" @click="sumDislikes"/>
                     <label class="label pl-1">{{ dislikes }}</label>
-                    <button class="button is-danger">Añadir al carrito</button>
+                    <button class="button is-danger" @click="addCarrito">Añadir al carrito</button>
                 </div>
             </div>
         </div>
@@ -201,6 +201,32 @@ export default {
             } else {
                 alert('Debes estar conectado para escribir un comentario')
             }
+        },
+        addCarrito() {
+            if(auth.currentUser != null) {
+                var cookie = document.cookie
+                if(cookie != '') {
+                    carrito = JSON.parse(cookie.slice(8))
+                }
+                var repetido = carrito.findIndex(item => item.nombreItem == this.nombre)
+                if(repetido != -1) {
+                    carrito.map(item => item.nombreItem == this.nombre ? {...item, cantidad: item.cantidad++} :item)
+                    document.cookie = "carrito="+JSON.stringify(carrito)
+                    alert('Cantidad del producto actualizada')
+                } else {
+                    carrito.push({
+                        "usuario": auth.currentUser.displayName, 
+                        "nombreItem": this.nombre, 
+                        "precioItem": this.precio,
+                        "cantidad": 1 
+                    })
+                    document.cookie = "carrito="+JSON.stringify(carrito)
+                    alert('Producto añadido al carrito')
+                }
+            } else {
+                alert('Debes iniciar sesión para añadir al carrito')
+            }
+            
         }
     }
 }
