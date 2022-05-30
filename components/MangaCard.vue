@@ -30,9 +30,13 @@
 
 <script>
 import { db, auth } from "~/plugins/firebase"
-var carrito = []
 
 export default {
+    data() {
+        return {
+            carrito: []
+        }
+    },
     props: {
         id: {
             type: String,
@@ -64,27 +68,26 @@ export default {
             if(auth.currentUser != null) {
                 var cookie = document.cookie
                 if(cookie != '') {
-                    carrito = JSON.parse(cookie.slice(8))
+                    this.carrito = JSON.parse(cookie.slice(8))
                 }
-                var repetido = carrito.findIndex(item => item.nombreItem == this.nombre)
+                var repetido = this.carrito.findIndex(item => item.nombreItem == this.nombre && item.usuario == auth.currentUser.displayName)
                 if(repetido != -1) {
-                    carrito.map(item => item.nombreItem == this.nombre ? {...item, cantidad: item.cantidad++} :item)
-                    document.cookie = "carrito="+JSON.stringify(carrito)
+                    this.carrito.map(item => item.nombreItem == this.nombre && item.usuario == auth.currentUser.displayName ? {...item, cantidad: item.cantidad++} :item)
+                    document.cookie = "carrito="+JSON.stringify(this.carrito)+";path=/"
                     alert('Cantidad del producto actualizada')
                 } else {
-                    carrito.push({
+                    this.carrito.push({
                         "usuario": auth.currentUser.displayName, 
                         "nombreItem": this.nombre, 
                         "precioItem": this.precio,
                         "cantidad": 1 
                     })
-                    document.cookie = "carrito="+JSON.stringify(carrito)
+                    document.cookie = "carrito="+JSON.stringify(this.carrito)+";path=/"
                     alert('Producto añadido al carrito')
                 }
             } else {
                 alert('Debes iniciar sesión para añadir al carrito')
             }
-            
         }
     }
 }

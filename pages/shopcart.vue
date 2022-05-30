@@ -10,7 +10,7 @@
                         <th>Precio</th>
                         <th>Cantidad</th>
                         <th>Total(item)</th>
-                        <td><a>Vaciar</a></td>
+                        <td><a @click="vaciarCarrito">Vaciar</a></td>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,7 +19,7 @@
                         <td>{{ item.precioItem }}€</td>
                         <td>x{{ item.cantidad }}</td>
                         <td>{{ item.cantidad * item.precioItem }}€</td>
-                        <td><button class="delete mt-1"></button></td>
+                        <td><button class="delete mt-1" @click="eliminarItem(item.nombreItem)"></button></td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -31,7 +31,17 @@
                 </tfoot>
             </table>
             <div class="buttons is-pulled-right">
-                <button class="button is-danger">Comprar</button>
+                <button class="button is-danger" @click="mostrarFactura">Comprar</button>
+            </div>
+            <div class="modal" id="factura">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="box has-text-centered">
+                        <h1 class="title is-2">¡Gracias por su compra!</h1>
+                        <p>Transacción realizada con exito.</p>
+                        <button class="button is-danger mt-3" @click="vaciarCarrito">Aceptar</button>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -45,26 +55,39 @@
 </template>
 
 <script>
+import { onAuthStateChanged } from 'firebase/auth'
 import { db, auth } from "~/plugins/firebase"
 
 export default {
-    mounted() {
-        this.obtenerCarrito()
+    async created() {
+        await onAuthStateChanged(auth, user => {
+            if(user) {
+                this.usuario = user.displayName
+                this.obtenerCarrito()
+            }
+        })
     },
     data() {
         return {
             verCarrito: false,
             carrito: [],
-            precioTotal: 0
+            carritoTemp: [],
+            precioTotal: 0,
+            usuario: ''
         }
     },
     methods: {
         obtenerCarrito() {
             var cookie = document.cookie
             if(cookie != '') {
-                this.verCarrito = true
                 var calcTotal
-                this.carrito = JSON.parse(cookie.slice(8))
+                this.carritoTemp = JSON.parse(cookie.slice(8))
+                this.carritoTemp.forEach(item => {
+                    if(item.usuario == this.usuario) {
+                        this.verCarrito = true
+                        this.carrito.push(item)
+                    }
+                })
                 this.carrito.forEach(item => {
                     calcTotal = item.cantidad * item.precioItem
                     this.precioTotal += calcTotal
@@ -72,6 +95,21 @@ export default {
             } else {
                 this.verCarrito = false
             }
+        },
+        vaciarCarrito() {
+            var arrayEliminado = this.carritoTemp.filter(item => item.usuario != this.usuario)
+            document.cookie = "carrito="+JSON.stringify(arrayEliminado)+";path=/"
+            location.reload()
+        },
+        eliminarItem(nombre) {
+            var itemEliminado = this.carritoTemp.findIndex(item => item.usuario == this.usuario && item.nombreItem == nombre)
+            this.carritoTemp.splice(itemEliminado, 1)
+            this.carrito.splice(itemEliminado, 1)
+            document.cookie = "carrito="+JSON.stringify(this.carritoTemp)+";path=/"
+            if(this.carrito == '') this.verCarrito = false
+        },
+        mostrarFactura() {
+            document.getElementById('factura').classList.add('is-active')
         }
     }
 }
