@@ -3,7 +3,7 @@
     <Hero />
     <h1 class="title pt-2">Novedades</h1>
     <hr>
-    <div class="columns is-multiline">
+    <div class="columns is-multiline is-mobile">
       <MangaCard
       :id='novedad.id'
       :imagen="novedad.image" 
@@ -18,7 +18,7 @@
     </div>
     <h1 class="title pt-5">Recomendados</h1>
     <hr>
-    <div class="columns is-multiline pb-5">
+    <div class="columns is-multiline is-mobile pb-5">
       <MangaCard
       :id='recomendado.id'
       :imagen="recomendado.image" 
@@ -71,5 +71,11 @@ export default {
   .manga-card {
     margin: 10px 10px;
     width: 322px;
+  }
+  
+  @media (max-width: 1407px) {
+    .manga-card {
+      width: 274px;
+    }
   }
 </style>

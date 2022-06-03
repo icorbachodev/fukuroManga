@@ -74,4 +74,10 @@ export default {
         margin: 10px 10px;
         width: 322px;
     }
+
+    @media (max-width: 1407px) {
+    .manga-card {
+      width: 274px;
+    }
+  }
 </style>

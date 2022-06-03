@@ -9,7 +9,7 @@
             <div class="card-content">
                 <div class="media">
                     <div class="media-content">
-                    <p class="title restaurant-name">
+                    <p class="title manga-name">
                         {{ nombre }}
                     </p>
                     <div class="columns">
@@ -25,7 +25,6 @@
             </div>
         </div>
   </div>
-    
 </template>
 
 <script>
@@ -104,5 +103,11 @@ export default {
 
     .title {
         font-size: 1.22rem;
+    }
+
+    @media (max-width: 1407px) {
+        .title {
+            font-size: 1rem;
+        }
     }
 </style>

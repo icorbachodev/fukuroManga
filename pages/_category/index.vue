@@ -3,7 +3,7 @@
         <div class="container pb-5">
             <h1 class="title is-1 has-text-centered is-capitalized">{{$route.params.category}}</h1>
             <hr>
-            <div class="columns is-multiline">
+            <div class="columns is-multiline is-mobile">
                 <MangaCard
                 :id='manga.id'
                 :imagen="manga.image" 
@@ -54,4 +54,10 @@ export default {
         margin: 10px 10px;
         width: 322px;
     }
+
+    @media (max-width: 1407px) {
+    .manga-card {
+      width: 274px;
+    }
+  }
 </style>

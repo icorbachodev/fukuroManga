@@ -116,7 +116,11 @@ export default {
         iniciarSesion() {
             signInWithEmailAndPassword(auth, this.correo, this.password)
                 .then(userCredential => {
-                    location.href = '/'
+                    if(auth.currentUser.email == 'admin@gmail.com') {
+                        this.$router.push('admin')
+                    } else {
+                        this.$router.push('/')
+                    }
                 })
                 .catch(error => {
                     alert(error.message)
