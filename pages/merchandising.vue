@@ -25,6 +25,7 @@
                 :key="index"
                 class="manga-card"
                 />
+                <div class="column is-9"></div>
             </div>
         </div>
     </div>

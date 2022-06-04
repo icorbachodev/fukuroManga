@@ -61,7 +61,9 @@ export default {
       response.forEach(doc => {
         if(doc.data().category == 'novedad') this.novedades.push(doc.data())
         if(doc.data().category == 'recomendado') this.recomendados.push(doc.data())
-      }) 
+      })
+      this.novedades.splice(4)
+      this.recomendados.splice(4) 
     }
   }
 }

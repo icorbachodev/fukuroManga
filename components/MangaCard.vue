@@ -3,7 +3,7 @@
         <div class="card has-text-centered">
             <div class="card-image">
                 <figure class="image">
-                    <a :href="categoria + '/' + id"><img :src="imagen" alt="Imagen manga" /></a>
+                    <a :href="categoria + '/' + id"><img :src="imagen" alt="Imagen manga"/></a>
                 </figure>
             </div>
             <div class="card-content">
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { db, auth } from "~/plugins/firebase"
+import { auth } from "~/plugins/firebase"
 
 export default {
     data() {

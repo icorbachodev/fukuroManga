@@ -107,12 +107,12 @@ export default {
         },
         desconectar() {
             signOut(auth)
-                .then(() => { 
-                    location.href = '/'
-                })
-                .catch(error => {
-                    alert(error.message)
-                })
+            .then(() => { 
+                location.href = '/'
+            })
+            .catch(error => {
+                alert(error.message)
+            })
         }
     }
 }
