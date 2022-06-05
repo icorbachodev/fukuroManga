@@ -65,7 +65,7 @@
                             </figure>
                             <a class="navbar-item"><strong>{{nombre}}</strong></a>
                             <div class="navbar-dropdown">
-                                <a class="navbar-item" href="/profile">Tu perfil</a>
+                                <a class="navbar-item" href="/profile" v-if="nombre != 'Admin'">Tu perfil</a>
                                 <a class="navbar-item" href="/shopcart">Ver carrito</a>
                                 <a class="navbar-item" @click="desconectar">Desconectar</a>
                             </div>
