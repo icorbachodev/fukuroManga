@@ -7,14 +7,14 @@
                         <h1 class="title is-4">Fukuro <b class="has-text-danger">Manga</b></h1>
                     </a>
 
-                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarManga" @click="desplegar">
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
                     </a>
                 </div>
 
-                <div id="navbarBasicExample" class="navbar-menu">
+                <div id="navbarManga" class="navbar-menu">
                     <div class="navbar-start pl-6 mx-auto">
                         <a class="navbar-item" href="/">
                             Inicio
@@ -42,11 +42,11 @@
                             Merchandising
                         </a>
 
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="/contact">
                             Contacto
                         </a>
 
-                        <a class="navbar-item">
+                        <a class="navbar-item" href="/aboutus">
                             Sobre nosotros
                         </a>
                     </div>
@@ -113,6 +113,10 @@ export default {
             .catch(error => {
                 alert(error.message)
             })
+        },
+        desplegar() {
+            document.querySelectorAll('.navbar-burger')[0].classList.toggle('is-active')
+            document.querySelectorAll('.navbar-menu')[0].classList.toggle('is-active')
         }
     }
 }

@@ -13,7 +13,7 @@
                     <option value="taza">Taza</option>
                 </select>
             </div>
-            <div class="columns is-multiline mt-3">
+            <div class="columns is-multiline is-mobile mt-3">
                 <MangaCard
                 :id='articulo.id'
                 :imagen="articulo.image" 
