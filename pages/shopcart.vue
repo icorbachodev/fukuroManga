@@ -1,6 +1,9 @@
 <template>
     <div class="container">
         <div class="full" v-if="verCarrito == true">
+            <div class="buttons is-pulled-right mt-3">
+                <button class="button is-danger" @click="mostrarFactura">Comprar</button>
+            </div>
             <h1 class="title is-1">Tu carrito</h1>
             <hr>
             <table class="table is-hoverable is-fullwidth">
@@ -30,9 +33,6 @@
                     <th></th>
                 </tfoot>
             </table>
-            <div class="buttons is-pulled-right">
-                <button class="button is-danger" @click="mostrarFactura">Comprar</button>
-            </div>
             <div class="modal" id="factura">
                 <div class="modal-background"></div>
                 <div class="modal-content">
