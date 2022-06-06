@@ -1,5 +1,3 @@
-# Fukuro Manga
-
-## Aplicación de venta de manga
+# Fukuro Manga - Aplicación de venta de mangas
 
 En progreso
