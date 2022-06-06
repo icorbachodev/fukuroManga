@@ -38,7 +38,7 @@
                 <div class="modal-content">
                     <div class="box has-text-centered">
                         <h1 class="title is-2">¡Gracias por su compra!</h1>
-                        <p>Transacción realizada con exito.</p>
+                        <p>Transacción realizada con éxito.</p>
                         <button class="button is-danger mt-3" @click="vaciarCarrito">Aceptar</button>
                     </div>
                 </div>

@@ -8,7 +8,3 @@
         <img src="https://www.adhesivosnatos.com/wp-content/uploads/2016/08/totoro-sentado.png" class="image mx-auto" width="300" height="300">
     </div>    
 </template>
-
-<style scoped>
-
-</style>
