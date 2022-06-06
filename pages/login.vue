@@ -117,7 +117,7 @@ export default {
             signInWithEmailAndPassword(auth, this.correo, this.password)
                 .then(userCredential => {
                     if(auth.currentUser.email == 'admin@gmail.com') {
-                        this.$router.push('admin')
+                        this.$router.push('/admin')
                     } else {
                         this.$router.push('/')
                     }
