@@ -82,7 +82,7 @@ export default {
 
 <style scoped>
     .container {
-        min-height: 667px;
+        min-height: 694px;
     }
 
     .primera {
