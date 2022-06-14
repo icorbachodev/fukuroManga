@@ -66,12 +66,16 @@ export default {
     },
     methods: {
         async guardarMensaje() {
-            await addDoc(collection(db, 'contacto'), {
+            if(this.nombre != '' && this.correo != '' && this.mensaje != '') {
+              await addDoc(collection(db, 'contacto'), {
                 name: this.nombre,
                 email: this.correo,
                 message: this.mensaje
-            })
-            document.getElementById('exito').classList.add('is-active')
+              })
+              document.getElementById('exito').classList.add('is-active')
+            } else {
+              alert('Debes rellenar todos los campos.') 
+            }
         },
         cerrar() {
             document.getElementById('exito').classList.remove('is-active')
