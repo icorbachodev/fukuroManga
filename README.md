@@ -1,6 +1,7 @@
 # Fukuro Manga
 
 Es una aplicación web que vende manga japones y merchandising relacionado.
+URL: fukuromanga.netlify.app
 
 ## Funcionalidades:
 
